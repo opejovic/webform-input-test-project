@@ -24,7 +24,7 @@ class UserInformationController extends Controller
             'address'          => ['required'],
             'zip_code'         => ['required', 'min:5'],
             'photo'            => ['required', 'image'],
-            'license_document' => ['required', 'file', 'mimes:pdf,txt'],
+            'license_document' => ['required', 'file', 'mimes:txt,pdf'],
         ]);
 
         User::create([
@@ -33,10 +33,10 @@ class UserInformationController extends Controller
             'phone_number'          => $validated['phone_number'],
             'address'               => $validated['address'],
             'zip_code'              => $validated['zip_code'],
-            'photo_path'            => $validated['photo']->store('photos', 'public'),
-            'license_document_path' => $validated['license_document']->store('licenses', 'public')
+            'photo_path'            => $request->file('photo')->store('photos', 'public'),
+            'license_document_path' => $request->file('license_document')->store('licenses', 'public')
         ]);
 
-        return response([], 201);
+        return response(['Information saved to database.'], 201);
     }
 }
