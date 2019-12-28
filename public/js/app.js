@@ -1860,7 +1860,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1918,7 +1917,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2189,7 +2187,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/api/user-information", this.formData()).then(function (response) {
-        _this.clearForm(_this.formData());
+        _this.clearForm();
 
         _this.$toasted.show(response.data);
       })["catch"](function (errors) {
@@ -2227,10 +2225,6 @@ __webpack_require__.r(__webpack_exports__);
         delete this.errors[field];
       }
     },
-    enforcePhoneFormat: function enforcePhoneFormat() {
-      var x = this.form.phone_number.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-      this.form.phone_number = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
-    },
     attachPhoto: function attachPhoto(photo) {
       this.form.photo = photo;
       this.clearError("photo");
@@ -2238,6 +2232,10 @@ __webpack_require__.r(__webpack_exports__);
     attachLicense: function attachLicense(license) {
       this.form.license_document = license;
       this.clearError("license");
+    },
+    enforcePhoneFormat: function enforcePhoneFormat() {
+      var x = this.form.phone_number.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      this.form.phone_number = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
     }
   }
 });
@@ -37655,7 +37653,6 @@ var render = function() {
             id: "license_document",
             type: "file",
             name: "license_document",
-            value: "",
             autofocus: ""
           },
           on: { change: _vm.onChange }
@@ -37723,7 +37720,6 @@ var render = function() {
             type: "file",
             name: "photo",
             accept: "image/*",
-            value: "",
             autofocus: ""
           },
           on: { change: _vm.onChange }
