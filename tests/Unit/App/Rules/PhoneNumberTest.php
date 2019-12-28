@@ -4,7 +4,7 @@ namespace Tests\Unit\App\Rules;
 
 use PHPUnit\Framework\TestCase;
 
-class PhoneNumberValidationTest extends TestCase
+class PhoneNumberTest extends TestCase
 {
     /** @test */
     public function phone_number_can_be_validated()

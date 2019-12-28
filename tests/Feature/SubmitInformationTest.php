@@ -16,7 +16,6 @@ class SubmitInformationTest extends TestCase
     /** @test */
     public function user_can_submit_their_information_photo_and_license_to_the_system()
     {
-        $this->withoutExceptionHandling();
         Storage::fake();
         
         $userPhoto = UploadedFile::fake()->image('user-photo.jpg');
@@ -32,7 +31,7 @@ class SubmitInformationTest extends TestCase
             'photo' => $userPhoto,
             'license_document' => $licenseDocument
         ]);
-
+        
         // Then the user should be created
         $this->assertCount(1, User::all());
         $user = User::first();
