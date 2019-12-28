@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -33,6 +33,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Add the user information.
+     *
+     * @param  array $data
+     * @return Model $user
+     */
+    public static function addInformation($data)
+    {
+        return self::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'address' => $data['address'],
+            'zip_code' => $data['zip_code'],
+            'photo_path' => request()->file('photo')->store('photos', 'public'),
+            'license_document_path' => request()->file('license_document')->store('licenses', 'public')
+        ]);
+    }
 
     /**
      * Return the users photo path.
