@@ -16,16 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
+        'name',
+        'email',
+        'phone_number',
+        'address',
+        'zip_code',
+        'photo_path',
+        'license_document_path',
     ];
 
     /**
@@ -36,4 +33,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Return the users photo path.
+     *
+     * @return string
+     */
+    public function getPhotoPathAttribute($photo)
+    {
+        return asset($photo);
+    }
+
+    /**
+     * Return the users license document path.
+     *
+     * @return string
+     */
+    public function getLicenseDocumentPathAttribute($licenseDocument)
+    {
+        return asset($licenseDocument);
+    }
 }

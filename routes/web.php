@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::post('api/user-information', 'API\UserInformationController@store')->name('user-info.store');
